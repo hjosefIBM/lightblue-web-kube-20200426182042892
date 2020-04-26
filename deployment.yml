@@ -1,9 +1,12 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: webapp-lightblue-deployment
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: webapp
   template:
     metadata:
       name: pod-webapp
@@ -12,7 +15,7 @@ spec:
     spec:
       containers:
         - name: webapp
-          image: "us.icr.io/cldstd01-ns/webapp:latest"
+          image: "us.icr.io/cldstd03-ns/webapp:latest"
           imagePullPolicy: Always
           livenessProbe:
             tcpSocket:
